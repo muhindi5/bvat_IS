@@ -3,7 +3,7 @@
  *  http://wazza.co.ke
  * 2:14:01 PM  : Apr 16, 2016
  */
-package beans;
+package controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,13 +19,13 @@ import org.primefaces.event.SelectEvent;
  */
 @Named(value = "calenderBean")
 @Dependent
-public class CalenderBean {
+public class CalenderController {
 
     private Date date;
     /**
      * Creates a new instance of CalenderBean
      */
-    public CalenderBean() {
+    public CalenderController() {
         
     }
     

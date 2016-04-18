@@ -52,7 +52,12 @@
     width: 35%;
     height:20px;
     margin-top:5px;
-    background:#006666;
+    background:#ffffff;
     float:right;
+    font-size: small;
+    font-weight: bold;
+    color:#666666;
+    text-align:right;
+    padding-right: 10px;
 }
 

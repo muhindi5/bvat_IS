@@ -15,7 +15,14 @@
         <h:form>
             <p:layout fullPage="true" style="display: inline-block; margin-top:100px;">
                 <p:layoutUnit position="north">
-                    BvAT Resource Management Portal
+                    BvAT Resource Management Portal <br/>
+                    <h:form>
+                        <div id="login-bar">
+                            <h:outputText value="User Login: #{loggedInUser.userName}" style="margin-right: 10px;"/>
+                            <h:commandLink value="Logout" action="#{loginController.logout()}"/>
+                        </div>
+                        
+                    </h:form>
                 </p:layoutUnit>
                 <p:layoutUnit position="west" size="200" resizable="false" closable="false">
                     <ui:include src="templates/requisitions_menu.xhtml"/>
@@ -25,7 +32,7 @@
                         <p:tab title="Requisitions">
                             <h:form id="requisitions">
                                 <h:panelGrid columns="4" cellspacing="10" cellpadding="10">
-                                    <f:facet name="header">Rurchase Request Form</f:facet>
+                                    <f:facet name="header">#{user}</f:facet>
                                         <p:outputLabel value="Request Number"/>
                                         <p:inputText id="rq_number"/>
                                         <p:outputLabel value="User"/>
