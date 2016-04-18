@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pm="http://primefaces.org/mobile">
+    <h:head>
+        <title>Requisition Form</title>
+        <link rel="stylesheet" href="../styler/banner.css" type="text/css"/>
+        <link rel="stylesheet" href="../styler/core.css" type="text/css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:layout fullPage="true" style="display: inline-block; margin-top:100px;">
+                <p:layoutUnit position="north">
+                    BvAT Resource Management Portal <br/>
+                    <h:form>
+                        <div id="login-bar">
+                            <h:outputText value="User Login: #{loggedInUser.userName}" style="margin-right: 10px;"/>
+                            <h:commandLink value="Logout" action="#{loginController.logout()}"/>
+                        </div>
+                        
+                    </h:form>
+                </p:layoutUnit>
+                <p:layoutUnit position="west" size="200" resizable="false" closable="false">
+                    <ui:include src="templates/requisitions_menu.xhtml"/>
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <p:tabView>
+                        <p:tab title="Requisitions">
+                            <h:form id="requisitions">
+                                <h:panelGrid columns="4" cellspacing="10" cellpadding="10">
+                                    <f:facet name="header">#{user}</f:facet>
+                                        <p:outputLabel value="Request Number"/>
+                                        <p:inputText id="rq_number"/>
+                                        <p:outputLabel value="User"/>
+                                        <p:inputText id="rq_user"/>
+                                        <p:outputLabel value="Request Date"/>
+                                        <p:calendar value="#{calenderBean.date}" pattern="dd/MM/yyyy"/>
+                                        <p:outputLabel value="Project Name"/>
+                                        <pm:field>
+                                            <p:outputLabel for="slct_prj" value=""/>
+                                            <p:selectOneMenu id="slct_prj">
+                                                <f:selectItem itemLabel="Organic Farming Magazine" itemValue="1"/>
+                                                <f:selectItem itemLabel="TOF OutReach Programme" itemValue="2"/>
+                                                <f:selectItem itemLabel="TOF Radio" itemValue="3"/>
+                                            </p:selectOneMenu>
+                                        </pm:field>
+                                        <p:outputLabel value="Status"/>
+                                        <p:inputText id="rq_status"/>
+                                        <p:outputLabel value="Request Type"/>
+                                        <p:inputText id="rq_type"/>
+                                </h:panelGrid>
+                                <h:panelGrid id="pnItems" columns="5" cellpadding="20" cellspacing="20">
+                                        <p:outputLabel value="Item Description"/>
+                                        <p:outputLabel value="Units"/>
+                                        <p:outputLabel value="Price"/>
+                                        <p:outputLabel value="Expense Line"/>
+                                        <p:outputLabel value="Item Cost"/>
+                                </h:panelGrid>
+                                <h:panelGrid columns="5" cellpadding="20" cellspacing="20">
+                                            <p:inputText id="item_desc"/>
+                                            <p:inputText id="item_units"/>
+                                            <p:inputText id="item_price"/>
+                                            <p:inputText id="item_expL"/>
+                                            <p:inputText id="item_cost"/>
+                                            <p:inputTextarea id="rq_comments"/>
+                                    
+                                </h:panelGrid>
+                            </h:form>
+                        </p:tab>
+                        <p:tab title="Cash Management">
+                        </p:tab>
+                        <p:tab title="Sales Orders">
+                        </p:tab>
+                        <p:tab title="Reports">
+                        </p:tab>
+                        <p:tab title="E-Leave">
+                        </p:tab>
+                    </p:tabView>
+                </p:layoutUnit>
+                <p:layoutUnit position="south">
+                    BioVision Africa Trust
+                </p:layoutUnit>
+            </p:layout>
+        </h:form>
+    </h:body>
+</html>
+
