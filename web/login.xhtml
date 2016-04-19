@@ -26,7 +26,7 @@
                                 value="#{loginController.passwordEntry}"
                                 required="true" requiredMessage="Password Required" size="30"></p:password>
                         <h:message for="tx_password" style="color:red;"/>
-                        <h:commandButton id="btnLogin" value="Login" style="float: right; width:100px; padding: 3px;"
+                        <p:commandButton id="btnLogin" value="Login" style="float: right; width:100px; padding: 3px;"
                                      action="#{loginController.isLoginEntryValid()}"/>
                 </p:panelGrid>
                 </h:form>

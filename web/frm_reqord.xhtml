@@ -10,18 +10,26 @@
         <title>Requisition Form</title>
         <link rel="stylesheet" href="../styler/banner.css" type="text/css"/>
         <link rel="stylesheet" href="../styler/core.css" type="text/css"/>
+        <style>
+        .headers{
+            font-weight:bold;
+            color:#003333;
+            margin-right:20px;
+            margin-left:20px;
+            text-align:center;
+        }    
+        </style>
+        
     </h:head>
     <h:body>
-        <h:form>
             <p:layout fullPage="true" style="display: inline-block; margin-top:100px;">
                 <p:layoutUnit position="north">
                     BvAT Resource Management Portal <br/>
-                    <h:form>
+                    <h:form id="frm_login">
                         <div id="login-bar">
                             <h:outputText value="User Login: #{loggedInUser.userName}" style="margin-right: 10px;"/>
                             <h:commandLink value="Logout" action="#{loginController.logout()}"/>
                         </div>
-                        
                     </h:form>
                 </p:layoutUnit>
                 <p:layoutUnit position="west" size="200" resizable="false" closable="false">
@@ -30,45 +38,109 @@
                 <p:layoutUnit position="center">
                     <p:tabView>
                         <p:tab title="Requisitions">
-                            <h:form id="requisitions">
-                                <h:panelGrid columns="4" cellspacing="10" cellpadding="10">
-                                    <f:facet name="header">#{user}</f:facet>
-                                        <p:outputLabel value="Request Number"/>
-                                        <p:inputText id="rq_number"/>
-                                        <p:outputLabel value="User"/>
-                                        <p:inputText id="rq_user"/>
-                                        <p:outputLabel value="Request Date"/>
-                                        <p:calendar value="#{calenderBean.date}" pattern="dd/MM/yyyy"/>
-                                        <p:outputLabel value="Project Name"/>
-                                        <pm:field>
-                                            <p:outputLabel for="slct_prj" value=""/>
-                                            <p:selectOneMenu id="slct_prj">
-                                                <f:selectItem itemLabel="Organic Farming Magazine" itemValue="1"/>
-                                                <f:selectItem itemLabel="TOF OutReach Programme" itemValue="2"/>
-                                                <f:selectItem itemLabel="TOF Radio" itemValue="3"/>
+                            <h:form id="frm_req">
+                                <p:panel header="Purchase Requisition Form" style="margin-bottom:20px;">
+                                    <h:panelGrid style="width: 100%;">
+                                        <p:growl id="msg" />
+                                    <p:row>
+                                        <p:column>
+                                            <h:panelGroup  style="margin-right: 20px;">
+                                            <p:outputLabel value="Request Date: "/>
+                                            <p:calendar value="#{calenderBean.date}" pattern="dd/MM/yyyy" placeholder="Select Date"/>
+                                            </h:panelGroup>
+                                        </p:column>
+                                        <p:column>
+                                        <h:panelGroup style="margin-right: 20px;">
+                                            <p:outputLabel value="Requestor:"/>
+                                            <p:selectOneMenu id="project" style="width: 170px;">
+                                                <f:selectItem itemLabel="5432: Mr. Allex Johns"></f:selectItem>
+                                                <f:selectItem itemLabel="6545 Ms. Makai Anai"></f:selectItem>
+                                                <f:selectItem itemLabel="8942 Mr. Fred Jicho"></f:selectItem>
                                             </p:selectOneMenu>
-                                        </pm:field>
-                                        <p:outputLabel value="Status"/>
-                                        <p:inputText id="rq_status"/>
-                                        <p:outputLabel value="Request Type"/>
-                                        <p:inputText id="rq_type"/>
+                                        </h:panelGroup>
+                                        </p:column>
+                                         <p:column>
+                                             <h:panelGroup style="margin-right: 20px;">
+                                            <p:outputLabel value="Project Name:"/>
+                                            <pm:field>
+                                                <p:selectOneMenu id="slct_prj" style="width: 250px;">
+                                                    <f:selectItem itemLabel="Organic Farming Magazine" itemValue="1"/>
+                                                    <f:selectItem itemLabel="TOF OutReach Programme" itemValue="2"/>
+                                                    <f:selectItem itemLabel="TOF Radio" itemValue="3"/>
+                                                </p:selectOneMenu>
+                                            </pm:field>  
+                                             </h:panelGroup>
+                                        </p:column>
+                                    </p:row>
+                                
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputText id="item_num" value="Description"/>
+                                        </p:column>
+                                        <p:column>
+                                            <p:inputText id="item_desc" placeholder="Item Description" style="margin-right:20px;margin-left:20px;"
+                                                         value="#{collectorViewController.item.description}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputLabel value="Quantity"/>
+                                        </p:column>
+                                        <p:column>
+                                            <p:inputText id="item_units" placeholder="Quantity" style="margin-right:20px;margin-left:20px;"
+                                                         value="#{collectorViewController.item.quantity}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputLabel value="Units" style="margin-right:20px;margin-left:20px;"/>
+                                        <p:selectOneMenu style="width: 100px; margin-right:20px;margin-left:20px;">
+                                            <f:selectItem itemLabel="Select One" itemValue=""/>
+                                            <f:selectItem itemLabel="Reams" itemValue="Reams"/>
+                                            <f:selectItem itemLabel= "Pieces" itemValue="Pieces"/>
+                                            <f:selectItem itemLabel="Rolls" itemValue="Rolls"/>
+                                            <f:selectItem itemLabel="Cartons" itemValue="Cartons"/>
+                                            <f:selectItem itemLabel="Litres" itemValue="Litres"/>
+                                            <!--<f:selectItems value="#{collectorViewController.item.unit}"/>-->
+                                            </p:selectOneMenu>
+                                        </p:column>
+                                    </p:row>
+                                        <p:row>
+                                        <p:column>
+                                            <h:outputText value="Unit Price" style="margin-right:10px;margin-left:20px;"/>
+                                            <p:inputText id="item_unit_price" placeholder="Unit price" value="#{collectorViewController.item.unitPrice}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <p:outputLabel value="Total Price" style="margin-right:10px;margin-left:20px;"/>
+                                            <p:inputText id="item_total_price" placeholder="Total" style="margin-right:20px;" value="#{collectorViewController.item.totalPrice}"/>
+                                        </p:column>
+                                    </p:row>
+                                        <p:row>
+                                            <p:column>
+                                                <p:commandButton id="btn_add" action="#{collectorViewController.reinit()}" value="Add Item" update="j_idt28:frm_req:pn_items msg @parent">
+                                                    <p:collector value="#{collectorViewController.item}" addTo="#{collectorViewController.items}" unique="true"/>
+                                                </p:commandButton>
+                                            </p:column>
+                                        </p:row>
+                                        <p:outputPanel id="pn_items">
+                                            <p:dataTable value="#{collectorViewController.items}" var="item" id="itemsTable">
+                                                <p:column headerText="Description">
+                                                    <h:outputText value="#{item.description}"/>
+                                                </p:column>
+                                                <p:column headerText="Quantity">
+                                                    <h:outputText value="#{item.quantity}"/>
+                                                </p:column>
+                                                <p:column headerText="Unit Price">
+                                                    <h:outputText value="#{item.unitPrice}"/>
+                                                </p:column>
+                                                <p:column headerText="Total Price">
+                                                    <h:outputText value="#{item.totalPrice}"/>
+                                                </p:column>
+                                                <p:column headerText="Action">
+                                                    <p:commandLink value="Remove" update="j_idt28:frm_req:pn_items" process=":j_idt28:frm_req:pn_items">
+                                                        <p:collector value="#{item}" removeFrom="#{collectorViewController.items}" unique="true"/>
+                                                    </p:commandLink>
+                                                </p:column>
+                                            </p:dataTable>
+                                        </p:outputPanel>
                                 </h:panelGrid>
-                                <h:panelGrid id="pnItems" columns="5" cellpadding="20" cellspacing="20">
-                                        <p:outputLabel value="Item Description"/>
-                                        <p:outputLabel value="Units"/>
-                                        <p:outputLabel value="Price"/>
-                                        <p:outputLabel value="Expense Line"/>
-                                        <p:outputLabel value="Item Cost"/>
-                                </h:panelGrid>
-                                <h:panelGrid columns="5" cellpadding="20" cellspacing="20">
-                                            <p:inputText id="item_desc"/>
-                                            <p:inputText id="item_units"/>
-                                            <p:inputText id="item_price"/>
-                                            <p:inputText id="item_expL"/>
-                                            <p:inputText id="item_cost"/>
-                                            <p:inputTextarea id="rq_comments"/>
-                                    
-                                </h:panelGrid>
+                                </p:panel>
                             </h:form>
                         </p:tab>
                         <p:tab title="Cash Management">
@@ -85,7 +157,6 @@
                     BioVision Africa Trust
                 </p:layoutUnit>
             </p:layout>
-        </h:form>
     </h:body>
 </html>
 
