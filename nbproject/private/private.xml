@@ -4,9 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/web/frm_reqord.xhtml</file>
-            <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/src/java/controllers/LoginController.java</file>
-            <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/web/login.xhtml</file>
-            <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/web/WEB-INF/faces-config.xml</file>
+            <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/src/java/controllers/NewPurchaseRequestController.java</file>
         </group>
     </open-files>
 </project-private>
