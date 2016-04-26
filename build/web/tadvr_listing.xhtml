@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pm="http://primefaces.org/mobile">
+    <h:head>
+        <title>Travel Advance Form</title>
+        <link rel="stylesheet" href="../styler/banner.css" type="text/css"/>
+        <link rel="stylesheet" href="../styler/core.css" type="text/css"/>
+        <style>
+            .headers{
+                font-weight:bold;
+                color:#003333;
+                margin-right:20px;
+                margin-left:20px;
+                text-align:center;
+            } 
+
+            .label{
+                display: inline-block;
+                margin:5px 3px 2px 3px;
+                width:120px;
+                text-align:right;
+            }
+
+            hr{
+                border:0px;
+                border-bottom:1px dashed #cccccc;
+                margin-bottom: 10px;
+                padding: 10px;
+            }
+            
+        </style>
+
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true" style="display: inline-block; margin-top:100px;">
+            <p:layoutUnit position="north">
+                BvAT Resource Management Portal <br/>
+                <h:form id="frm_login">
+                    <div id="login-bar">
+                        <h:outputText value="User Login: #{loggedInUser.userName}" 
+                                      style="margin-right: 10px;"/>
+                        <h:commandLink value="Logout" 
+                                       action="#{loginController.logout()}"/>
+                    </div>
+                </h:form>
+            </p:layoutUnit>
+            <p:layoutUnit position="west" 
+                          size="200" 
+                          resizable="false" 
+                          closable="false">
+                <ui:include src="templates/requisitions_menu.xhtml"/>
+            </p:layoutUnit>
+            <p:layoutUnit position="center">
+                <p:tabView>
+                    <p:tab title="Requisitions">
+                        <h:form id="frm_req">
+                            <h:panelGrid style="width: 100%;">
+                                <p:panel header="Travel Advance Form" style="margin-bottom:20px;" closable="true">
+                                    <p:growl id="msg" />
+                                    <h:dataTable value="#{travelAdvRequestsList.tar}" var="tadv">
+                                        <h:column>
+                                            <f:facet name="header"><h:outputText value="Id"/></f:facet>
+                                            <h:outputText value="#{tadv.tradvNum}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><h:outputText value="Request Owner"/></f:facet>
+                                            <h:outputText value="#{tadv.requestor.fname} #{tadv.requestor.lname}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><h:outputText value="Destination"/></f:facet>
+                                            <h:outputText value="#{tadv.destination} #{tadv.country}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><h:outputText value="Reason"/></f:facet>
+                                            <h:outputText value="#{tadv.travelType}: #{tadv.travelPurpose}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><h:outputText value="Amount"/></f:facet>
+                                            <h:outputText value="#{tadv.requestAmount}"/>
+                                        </h:column>
+                                    </h:dataTable>
+                                </p:panel>
+                            </h:panelGrid>
+                        </h:form>
+                    </p:tab>
+                    <p:tab title="Cash Management">
+                    </p:tab>
+                    <p:tab title="Sales Orders">
+                    </p:tab>
+                    <p:tab title="Reports">
+                    </p:tab>
+                    <p:tab title="E-Leave">
+                    </p:tab>
+                </p:tabView>
+            </p:layoutUnit>
+            <p:layoutUnit position="south">
+                BioVision Africa Trust
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>
+

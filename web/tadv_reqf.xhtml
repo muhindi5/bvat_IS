@@ -65,18 +65,28 @@
                                     <p:row>
                                         <p:column>
                                             <p:outputLabel id="tadv_empid" value="Employee ID" styleClass="label" />
-                                            <p:inputText id="tx_tadv_empid" value="#{tadvController.travelAdvReq.requestor.employeeId}" size="5"/>
+                                            <p:inputText 
+                                                id="tx_tadv_empid" 
+                                                value="#{tadvController.travelAdvReq.requestor.employeeId}"
+                                                size="5"
+                                                required="true" requiredMessage="Please enter employee ID"/>
                                         </p:column>
                                         <p:column>
                                             <p:outputLabel id="lb_tadv_empname" value="Employee Name" styleClass="label"/>
-                                            <p:inputText id="tx_tadv_empname" value="#{tadvController.travelAdvReq.requestor.fname}#{tadvController.travelAdvReq.requestor.fname}" disabled="true" size="15"/>
+                                            <p:outputLabel id="tx_tadv_empname" value="#{tadvController.travelAdvReq.requestor.fname}"/>
                                         </p:column>
                                         <p:column>
                                             <p:outputLabel value="Date" styleClass="label"/>
                                             <p:calendar
+                                                id="pcal_createDate"
                                                 value="#{tadvController.travelAdvReq.submitDate}" 
                                                 pattern="dd/MM/yyyy" 
-                                                placeholder="Select Date" size="7"/>
+                                                placeholder="Select Date"
+                                                size="7"
+                                                showOn="button">
+                                                <f:validator validatorId="validators.DateValidator"/>
+                                            </p:calendar>
+                                            <h:message for="pcal_createDate" tooltip="true" style="color:red;"/>
                                             <ui:debug hotkey="L"/>
                                         </p:column>
                                     </p:row>
@@ -86,34 +96,47 @@
                                             <p:outputLabel id="lb_tadv_purpose" value="Purpose of Travel" styleClass="label"/>
                                             <p:inputText id="tx_tadv_purpose" 
                                                          value="#{tadvController.travelAdvReq.travelPurpose}" 
-                                                         placeholder=""
-                                                         />
+                                                         required="true"
+                                                         requiredMessage="Enter purpose of travel"/>
                                         </p:column>
                                         <p:column>
                                             <p:outputLabel value="Destination" styleClass="label"/>
-                                            <p:inputText id="txt_tadvlocation" value="#{tadvController.travelAdvReq.destination}" />
+                                            <p:inputText id="txt_tadvlocation" 
+                                                         value="#{tadvController.travelAdvReq.destination}"
+                                                         required="true"
+                                                         requiredMessage="Enter travel destination"/>
                                         </p:column>
                                         <p:column>
                                             <p:outputLabel value="From" styleClass="label"/>
                                             <p:calendar 
+                                                id="pcal_fromDate"
                                                 value="#{tadvController.travelAdvReq.fromDate}" 
                                                 pattern="dd/MM/yyyy" 
-                                                placeholder="From date"
-                                                />
+                                                placeholder="From date">
+                                                <f:validator validatorId="validators.DateValidator"/>
+                                            </p:calendar>
+                                        <h:message for="pcal_fromDate" tooltip="true" style="color:red;"/>    
                                         </p:column>
                                         <p:column>
                                             <p:outputLabel value="To" styleClass="label"/>
                                             <p:calendar  
+                                                id="pcal_toDate"
                                                 value="#{tadvController.travelAdvReq.toDate}" 
                                                 pattern="dd/MM/yyyy" 
-                                                placeholder="To date"
-                                                />
+                                                placeholder="To date">
+                                                <f:attribute name="attrFromDate" value="#{tadvController.travelAdvReq.fromDate}"/>
+                                                <f:validator validatorId="validators.ToFromValidator"/>
+                                            </p:calendar>
+                                                <h:message for="pcal_toDate" tooltip="true" style="color:red;"/>
                                         </p:column>
                                     </p:row>
                                     <p:row styleClass="hr-samerow">
                                         <p:column>
                                             <p:outputLabel value="Travel Type" styleClass="label"/>
-                                            <p:selectOneMenu id="slct_project" value="#{tadvController.travelAdvReq.travelType}">
+                                            <p:selectOneMenu id="slct_project" 
+                                                             value="#{tadvController.travelAdvReq.travelType}"
+                                                             required="true"
+                                                             requiredMessage="Enter travel type">
                                                 <f:selectItem itemLabel="Professional Development" itemValue="1"/>
                                                 <f:selectItem itemLabel="Research: Field Visit" itemValue="2"/>
                                                 <f:selectItem itemLabel="Conference/Workshop" itemValue="2"/>
@@ -121,10 +144,8 @@
                                         </p:column>
                                         <p:column>
                                             <p:outputLabel value="Country" styleClass="label"/>
-                                            <p:selectOneMenu id="slct_country" value="#{tadvController.travelAdvReq.country}">
-                                                <f:selectItem itemLabel="Afghanistan" itemValue="1"/>
-                                                <f:selectItem itemLabel="Britain" itemValue="2"/>
-                                                <f:selectItem itemLabel="Switzerland" itemValue="3"/>
+                                            <p:selectOneMenu id="slct_country" value="#{countryList.countryName}">
+                                                <f:selectItems value="#{countryList.countryListing}" />
                                             </p:selectOneMenu>
                                         </p:column>
                                     </p:row>
@@ -136,7 +157,7 @@
                                         </p:column>
                                     </p:row>  
                                     <hr/>
-                                    <p:row>
+<!--                                    <p:row>
                                         <p:column style="margin-bottom:20px;">
                                             <p:outputLabel value="Air Fare" styleClass="label"/>
                                             <p:inputText  value="" />
@@ -153,7 +174,7 @@
                                             <p:outputLabel value="Meals" styleClass="label"/>
                                             <p:inputText  value="" />
                                         </p:column>
-                                    </p:row>
+                                    </p:row>-->
                                     <p:row>
                                         <p:column>
                                             <p:outputLabel value="Notes"/>
@@ -168,8 +189,8 @@
                                                          action="#{tadvController.discard()}" />
                                         <p:commandButton id="cmd_save" value="Save" 
                                                          action="#{tadvController.save()}" />
-                                        <p:commandButton id="cmd_submit" value="Save and Submit" 
-                                                         action="#{tadvController.saveTravelAdvanceRequest()}" />
+                                        <h:commandButton id="cmd_submit" value="Save and Submit" 
+                                                         action="#{tadvController.saveTravelAdvanceRequest}" />
                                     <!--</p:panelGrid>--> 
                                         </p:column>
                                     </p:row>
