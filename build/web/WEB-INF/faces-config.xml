@@ -17,12 +17,12 @@
         <from-view-id>/login.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>PG_HOME</from-outcome>
-            <to-view-id>/frm_reqord.xhtml</to-view-id>
+            <to-view-id>/prch_reqf.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     
     <navigation-rule>
-        <from-view-id>/frm_reqord.xhtml</from-view-id>
+        <from-view-id>/prch_reqf.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>PG_LOGOUT</from-outcome>
             <to-view-id>/login.xhtml</to-view-id>

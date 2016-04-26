@@ -1,0 +1,8 @@
+<!--                                                                                            <p:selectOneMenu id="slct_employee" 
+                                                                                                             style="width:170px;" 
+                                                                                                             value="#{employeesController.selectedEmployee}">
+                                                                                                <f:selectItems value="#{employeesController.employees}" 
+                                                                                                               var="emp" 
+                                                                                                               itemLabel="#{emp.fname} #{emp.lname}" 
+                                                                                                               itemValue="#{emp}"/>
+                                                                                            </p:selectOneMenu>-->
