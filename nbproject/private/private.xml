@@ -5,9 +5,10 @@
         <group>
             <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/src/java/controllers/TravelAdvanceRequestController.java</file>
             <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/src/java/entities/TravelAdvanceRequest.java</file>
+            <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/src/java/controllers/TravelAdvRequestsList.java</file>
             <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/web/tadv_reqf.xhtml</file>
             <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/src/java/mediators/TravelAdvanceRequestJpaController.java</file>
-            <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/src/java/mediators/EmployeeJpaController.java</file>
+            <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/web/tadvr_listing.xhtml</file>
         </group>
     </open-files>
 </project-private>

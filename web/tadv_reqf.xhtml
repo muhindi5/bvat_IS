@@ -137,15 +137,15 @@
                                                              value="#{tadvController.travelAdvReq.travelType}"
                                                              required="true"
                                                              requiredMessage="Enter travel type">
-                                                <f:selectItem itemLabel="Professional Development" itemValue="1"/>
-                                                <f:selectItem itemLabel="Research: Field Visit" itemValue="2"/>
-                                                <f:selectItem itemLabel="Conference/Workshop" itemValue="2"/>
+                                                <f:selectItem itemLabel="Professional Development" itemValue="Professional Development"/>
+                                                <f:selectItem itemLabel="Research: Field Visit" itemValue="Research: Field Visit"/>
+                                                <f:selectItem itemLabel="Conference/Workshop" itemValue="Conference/Workshop"/>
                                             </p:selectOneMenu>
                                         </p:column>
                                         <p:column>
                                             <p:outputLabel value="Country" styleClass="label"/>
                                             <p:selectOneMenu id="slct_country" value="#{countryList.countryName}">
-                                                <f:selectItems value="#{countryList.countryListing}" />
+                                                <f:selectItems value="#{countryList.countryListing}"/>
                                             </p:selectOneMenu>
                                         </p:column>
                                     </p:row>

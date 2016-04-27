@@ -8,6 +8,7 @@ package controllers;
 import entities.TravelAdvanceRequest;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -33,14 +34,15 @@ public class TravelAdvRequestsList {
     private UserTransaction ut;
     private List<TravelAdvanceRequest> tar;
     
+    @PostConstruct
     public void init(){
         travelAdvRequest = new TravelAdvanceRequest();
         jpaController = new TravelAdvanceRequestJpaController(ut, emf);
+        tar = new ArrayList<>();
         getListing();
     }
     
     public TravelAdvRequestsList() {
-       tar = new ArrayList<>();
     }
 
     public List<TravelAdvanceRequest> getTar() {

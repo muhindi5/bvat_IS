@@ -84,6 +84,7 @@ public class TravelAdvanceRequestController {
         Employee preparedBy = empJpaController.findEmployee(3);
         Logger.getAnonymousLogger().log(Level.INFO, preparedBy.toString());
         travelAdvReq.setRequestor(requestor);
+        travelAdvReq.setCountry("Belgium");
         travelAdvReq.setPreparedBy(preparedBy);
         travelAdvReq.setStatus("IN_REVIEW_FIN");
         try {
