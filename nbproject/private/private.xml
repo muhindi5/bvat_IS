@@ -3,7 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/src/java/controllers/TravelAdvRequestsList.java</file>
+=======
+            <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/src/java/controllers/TravelAdvanceRequestController.java</file>
+            <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/src/java/entities/TravelAdvanceRequest.java</file>
+            <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/src/java/controllers/TravelAdvRequestsList.java</file>
+            <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/web/tadv_reqf.xhtml</file>
+            <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/src/java/mediators/TravelAdvanceRequestJpaController.java</file>
+>>>>>>> cb37ac098f0b50e46d299a459e811539422c1c29
             <file>file:/home/kelli/NetBeansProjects/BvAT%20IS/web/tadvr_listing.xhtml</file>
         </group>
     </open-files>
